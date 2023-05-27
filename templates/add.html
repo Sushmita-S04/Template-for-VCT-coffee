@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Akaya+Telivigala&family=Damion&family=Henny+Penny&family=Lato&family=Niconne&family=Satisfy&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h2>Add items</h2>
+    <form action="/addItem" method="POST" enctype="multipart/form-data">
+      Name: <input type="text" name="name" /><br />
+      Price: <input type="text" name="price" /><br />
+      Description: <textarea name="description" rows="3" cols="40"></textarea
+      ><br />
+      Image: <input type="file" name="image" /><br />
+      Stock: <input type="text" name="stock" /><br />
+      Category:
+      <select name="category">
+        {% for row in categories %}
+        <option value="{{row[0]}}">{{row[1]}}</option>
+        {% endfor %}</select
+      ><br />
+      <input type="submit" />
+    </form>
+  </body>
+</html>

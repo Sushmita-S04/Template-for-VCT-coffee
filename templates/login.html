@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login Page</title>
+    <link rel="stylesheet" href="/static/css/login.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Akaya+Telivigala&family=Damion&family=Henny+Penny&family=Lato&family=Niconne&family=Satisfy&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- partial:index.partial.html -->
+    <div id="bg" style="background-image: url('/static/images/login2.jpg');"><p>{{error}}</p></div>
+
+    <form action="/login" method="POST">
+      <div class="loginform">
+        <div class="display ">
+						<div class="signup-form"><center>
+				<h2 style="font-size: 70px; color:black;font-family:'Akaya Telivigala',cursive;font-style: bold;font-weight: 1000;">LOGIN</h2>
+        </center>
+        <div class="form-field">
+          <input
+            type="email"
+            placeholder="Email / Username"
+            required
+            name="email"
+          />
+        </div>
+
+        <div class="form-field">
+          <input
+            type="password"
+            placeholder="Password"
+            required
+            name="password"
+          />
+        </div>
+
+        <div class="form-field">
+          <button class="btn" type="submit" style="background-color: #361500; font-size: 25px; color: white;text-decoration: none;font-family: 'Akaya Telivigala',cursive;">Log in</button>
+
+          <button class="btn" style="background-color:#361500;">
+            <a href="/registerationForm" style="font-size: 25px; color: white;text-decoration: none;font-family: 'Akaya Telivigala',cursive;">Register here</a>
+          </button>
+        </div>
+      </div>
+    </form>
+    <!-- partial -->
+  </body>
+</html>

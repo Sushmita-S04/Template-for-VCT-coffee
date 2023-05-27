@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Welcome</title>
+<link rel="stylesheet" href={{ url_for('static', filename='css/home.css') }} />
+<link rel="stylesheet" href={{ url_for('static', filename='css/topStyle.css') }} />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato&family=Satisfy&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato&family=Niconne&family=Satisfy&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Lato&family=Niconne&family=Satisfy&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Damion&family=Henny+Penny&family=Lato&family=Niconne&family=Satisfy&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Akaya+Telivigala&family=Damion&family=Henny+Penny&family=Lato&family=Niconne&family=Satisfy&display=swap" rel="stylesheet">
+<style>
+    
+    .container {
+  position: relative;
+  width: 50%;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.overlay {
+    
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #e1e9e2;
+  overflow: hidden;
+  width: 190px;
+  height: 0;
+  transition: .5s ease;
+  opacity: 0.8;
+}
+
+.container:hover .overlay {
+  height: 100%;
+}
+
+.text {
+  white-space: nowrap; 
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+img {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
+}
+img:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+#logo:hover{
+    box-shadow: 0 0 2px 1px #361500;
+}
+.categories:hover{
+    background-color: rgb(96, 45, 45);
+    opacity: 0.5;
+}
+
+</style>
+</head>
+<body style="margin:0px;padding:0px;background-color: #361500;">
+<div id="title" style="font-family: 'Satisfy';background-color: #361500; margin: 0px; padding:0px; display:inline-block;">
+    <a href="/">
+        <img id="logo" style="margin: 0px;width:80px;height:80px;border: 0px;"src= {{ url_for('static', filename='images/cup.png') }} />
+    </a>
+     <h1 style="font-family: 'Henny Penny', cursive;color:white; float: left; padding-left:20px;padding-right: 800px;margin: 0px; font-size: 70px;">
+        Caffetopia
+     </h1>
+
+
+    {% if not loggedIn %}
+    <div id="signInButton" style="font-family:sans-serif;margin-top: 30px;">
+       <button style="background-color: brown;"> <a style="font-family: 'Akaya Telivigala',cursive; text-decoration:none;font-size: 30px;color: white;"class="link" href="/loginForm">Sign In</a></button>
+    </div>
+    {% else %}
+    <div class="dropdown">
+        <button class="dropbtn" style="margin-top: 20px;width:100px;font-family: 'Akaya Telivigala', cursive;">Hello, <br>{{firstName}}</button>
+        <div class="dropdown-content" style="width: 50px;font-size: 40px;">
+            <a style="font-size:20px;font-weight: 1000;"href="/account/profile">Your profile</a>
+            <hr>
+            <a style="font-size: 20px;font-weight: 1000;"href="/logout">Sign Out</a>
+        </div>
+    </div>
+    {% endif %}
+    <div id="kart">
+        <a class="link" href="/cart" style="color: white;text-decoration:none;">
+            <img src={{url_for('static', filename='images/shopping-cart.png')}} style="height: 50px; width:50px;" id="cartIcon" />
+            {{noOfItems}}
+        </a>
+    </div>
+</div>
+<div style="background-image:url('../static/images/wall1.jpg');background-repeat:no-repeat;background-size: cover; margin:0px;padding:0px; display:inline-block;width:100%; height: 800px;">
+<div class="display">
+    <div class="displayCategory">
+        <h2 style=" font-family: 'Akaya Telivigala', cursive;font-size: 95px; padding:10px; margin: 0px;">Shop by Category: </h2>
+        <ul style="padding:20px; margin: 0px;">
+            {% for row in categoryData %}
+            <li style="font-family: 'Akaya Telivigala', cursive; font-size:45px;font-weight: 1000; color: white;font-style: bold;"><a class="categories"style="text-decoration: none;color: black;font-weight: 1000; font-weight: 1000; color: white;font-style: bold;"href="/displayCategory?categoryId={{row[0]}}">{{row[1]}}</a></li><br><br>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+</div>
+<br><br>
+    <div style="width: 100%; height:100%; background-image: url('/static/images/browntexture.jpg');">
+        <h2 style="font-size:90px;font-family: 'Niconne';margin-bottom: 40px;margin-top: 20px;color:white;"><center> Items</center></h2>
+        {% for data in itemData %}
+        <table>
+            <tr id="productName">
+                {% for row in data %}
+                <td style="font-size: 25px;color: white; font-style:bold;font-family: 'Akaya Telivigala', cursive;">
+                    {{row[1]}}
+                </td>
+                {% endfor %}
+            </tr>
+            <tr id="productImage">
+                {% for row in data %}
+                <td>
+                <div class="container">
+                    <a href="/productDescription?productId={{row[0]}}">
+                        <img src={{ url_for('static', filename='uploads/' + row[4]) }} id="itemImage" style="width:175px;" class="image"/>
+                        <div class="overlay">
+                            <div class="text" style="color:#361500;font-size:30px;font-family: 'Akaya Telivigala', cursive;font-style: bold;"><center>Tap to <br> know more</center></div>
+                          </div>
+                    </a>
+                </div>
+                </td>
+                {% endfor %}
+            </tr>
+            <tr id="productPrice">
+                {% for row in data %}
+                <td style="font-size: 20px; font-style:bold;font-family: 'Akaya Telivigala', cursive;font-weight: 1000;color: white;">
+                    Rs {{row[2]}}
+                </td>
+                {% endfor %}
+                <br>
+            </tr>
+        </table>
+        {% endfor %}
+    </div>
+
+</div>
+</body>
+</html>
